@@ -21,16 +21,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SecretSharing.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interpolation.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Polynomial.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
