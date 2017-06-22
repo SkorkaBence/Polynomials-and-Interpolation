@@ -23,7 +23,9 @@ public:
 	}
 
 	Ring calculateSecret(std::map<int, Ring> input) {
-
+		Interpolation<double> ib(map);
+		Polynomial<double> p = ib.calculatePolinom();
+		return p(0);
 	}
 
 };
