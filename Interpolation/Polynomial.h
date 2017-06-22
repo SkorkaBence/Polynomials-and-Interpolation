@@ -5,15 +5,15 @@
 #include <vector>
 
 template<typename Ring>
-class Polinom {
+class Polynomial {
 private:
 	std::vector<Ring> vals;
 public:
-	Polinom() {
+	Polynomial() {
 
 	}
 
-	Polinom(std::vector<Ring> vr) : vals(vr) {
+	Polynomial(std::vector<Ring> vr) : vals(vr) {
 
 	}
 
@@ -70,7 +70,7 @@ public:
 
 	void echo(std::ostream& out) {
 		int d = this->deg();
-		out << "Polinom:";
+		out << "Polynomial:";
 		for (int i = 0; i <= d; i++) {
 			if (this->getValue(i) != 0) {
 				out << "   " << this->getValue(i) << "x^" << i;
@@ -80,8 +80,8 @@ public:
 };
 
 template<typename T>
-Polinom<T> operator + (Polinom<T> p1, Polinom<T> p2) {
-	Polinom<T> r = Polinom<T>();
+Polynomial<T> operator + (Polynomial<T> p1, Polynomial<T> p2) {
+	Polynomial<T> r = Polynomial<T>();
 	int d1 = p1.deg();
 	int d2 = p2.deg();
 	int mx = (d1 > d2 ? d1 : d2);
@@ -92,8 +92,8 @@ Polinom<T> operator + (Polinom<T> p1, Polinom<T> p2) {
 }
 
 template<typename T>
-Polinom<T> operator - (Polinom<T> p1, Polinom<T> p2) {
-	Polinom<T> r = Polinom<T>();
+Polynomial<T> operator - (Polynomial<T> p1, Polynomial<T> p2) {
+	Polynomial<T> r = Polynomial<T>();
 	int d1 = p1.deg();
 	int d2 = p2.deg();
 	int mx = (d1 > d2 ? d1 : d2);
@@ -104,8 +104,8 @@ Polinom<T> operator - (Polinom<T> p1, Polinom<T> p2) {
 }
 
 template<typename T>
-Polinom<T> operator * (Polinom<T> p1, Polinom<T> p2) {
-	Polinom<T> r = Polinom<T>();
+Polynomial<T> operator * (Polynomial<T> p1, Polynomial<T> p2) {
+	Polynomial<T> r = Polynomial<T>();
 	int d1 = p1.deg();
 	int d2 = p2.deg();
 	for (int i = 0; i <= ((d1+1) * (d2+1)); i++) {
@@ -119,14 +119,14 @@ Polinom<T> operator * (Polinom<T> p1, Polinom<T> p2) {
 }
 
 template<typename T>
-Polinom<T> operator / (Polinom<T> n, Polinom<T> d) {
-	Polinom<T> q = Polinom<T>();
-	Polinom<T> r = n;
+Polynomial<T> operator / (Polynomial<T> n, Polynomial<T> d) {
+	Polynomial<T> q = Polynomial<T>();
+	Polynomial<T> r = n;
 
 	while (!r.isNull() && r.deg() >= d.deg()) {
 		T leading_v = r.getValue(r.deg()) / d.getValue(d.deg());
 		int leadign_p = r.deg() - d.deg();
-		Polinom<T> t = Polinom<T>();
+		Polynomial<T> t = Polynomial<T>();
 		t.addValue(leadign_p, leading_v);
 		q = q + t;
 		r = r - t * d;
@@ -140,8 +140,8 @@ Polinom<T> operator / (Polinom<T> n, Polinom<T> d) {
 }
 
 template<typename T, typename K>
-Polinom<T> operator * (Polinom<T> p, K s) {
-	Polinom<T> r = Polinom<T>();
+Polynomial<T> operator * (Polynomial<T> p, K s) {
+	Polynomial<T> r = Polynomial<T>();
 	for (int i = 0; i <= p.deg(); i++) {
 		r.addValue(i, p.getValue(i) * s);
 	}
@@ -149,13 +149,13 @@ Polinom<T> operator * (Polinom<T> p, K s) {
 }
 
 template<typename T, typename K>
-Polinom<T> operator * (K s, Polinom<T> p) {
+Polynomial<T> operator * (K s, Polynomial<T> p) {
 	return p * s;
 }
 
 template<typename T, typename K>
-Polinom<T> operator / (Polinom<T> p, K s) {
-	Polinom<T> r = Polinom<T>();
+Polynomial<T> operator / (Polynomial<T> p, K s) {
+	Polynomial<T> r = Polynomial<T>();
 	for (int i = 0; i <= p.deg(); i++) {
 		r.addValue(i, p.getValue(i) / s);
 	}

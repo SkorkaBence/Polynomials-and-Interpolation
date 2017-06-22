@@ -3,15 +3,15 @@
 
 #include <vector>
 #include <map>
-#include "Polinom.h"
+#include "Polynomial.h"
 #include "Interpolation.h"
 
 template<typename Ring = int>
 class Secret {
 public:
 	
-	Polinom<Ring> generatePolinom(Ring secret, int needed) {
-		Polinom<Ring> p = Polinom<Ring>();
+	Polynomial<Ring> generatePolinom(Ring secret, int needed) {
+		Polynomial<Ring> p;
 		p.addValue(0, secret);
 
 		for (int i = 1; i < needed; i++) {

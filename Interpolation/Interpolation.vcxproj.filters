@@ -20,9 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Polinom.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="SecretSharing.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -31,6 +28,9 @@
     </ClInclude>
     <ClInclude Include="Field.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynomial.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

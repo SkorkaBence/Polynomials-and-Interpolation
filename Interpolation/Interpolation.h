@@ -2,7 +2,7 @@
 #define H_INTERPOLATION
 
 #include <map>
-#include "Polinom.h"
+#include "Polynomial.h"
 
 template<typename Ring>
 class Interpolation {
@@ -11,7 +11,7 @@ private:
 public:
 	Interpolation(std::map<int, Ring> input) : known_points(input) {}
 
-	Polinom<Ring> calculatePolinom() {
+	Polynomial<Ring> calculatePolinom() {
 		std::vector<int> xs;
 		std::vector<Ring> ys;
 
@@ -21,13 +21,13 @@ public:
 			ys.push_back(it->second);
 		}
 
-		Polinom<Ring> P1;
+		Polynomial<Ring> P1;
 		for (int j = 0; j < xs.size(); j++) {
-			Polinom<Ring> temp1;
+			Polynomial<Ring> temp1;
 			temp1.addValue(0, 1);
 			for (int k = 0; k < xs.size(); k++) {
 				if (k != j) {
-					Polinom<Ring> temp2;
+					Polynomial<Ring> temp2;
 					temp2.addValue(0, - xs[k]);
 					temp2.addValue(1, 1);
 

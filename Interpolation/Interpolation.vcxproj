@@ -144,7 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Field.h" />
     <ClInclude Include="Interpolation.h" />
-    <ClInclude Include="Polinom.h" />
+    <ClInclude Include="Polynomial.h" />
     <ClInclude Include="SecretSharing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
