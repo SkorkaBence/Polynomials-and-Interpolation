@@ -112,6 +112,14 @@ public:
 		this->setValue(value - 1);
 		return this;
 	}
+
+	/*operator double () {
+		return (double)value;
+	}
+
+	operator int() {
+		return (int)value;
+	}*/
 };
 
 #endif

@@ -3,16 +3,19 @@
 
 #include <vector>
 #include <map>
+#include <time.h>
 #include "Polynomial.h"
 #include "Interpolation.h"
 
-template<typename Ring = int>
+template<typename Ring>
 class Secret {
 public:
 	
-	Polynomial<Ring> generatePolinom(Ring secret, int needed) {
+	Polynomial<Ring> generatePolynomial(Ring secret, int needed) {
 		Polynomial<Ring> p;
 		p.addValue(0, secret);
+
+		srand(time(NULL));
 
 		for (int i = 1; i < needed; i++) {
 			Ring rnd = rand() % 100 + 1;
@@ -23,9 +26,14 @@ public:
 	}
 
 	Ring calculateSecret(std::map<int, Ring> input) {
-		Interpolation<double> ib(map);
-		Polynomial<double> p = ib.calculatePolinom();
+		Interpolation<Ring> ib(input);
+		Polynomial<Ring> p = ib.calculatePolinom();
 		return p(0);
+	}
+
+	Polynomial<Ring> calculatePolynomial(std::map<int, Ring> input) {
+		Interpolation<Ring> ib(input);
+		return ib.calculatePolinom();
 	}
 
 };

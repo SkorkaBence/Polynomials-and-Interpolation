@@ -15,23 +15,28 @@ public:
 		typename std::map<int, Ring>::iterator iterator_j;
 		typename std::map<int, Ring>::iterator iterator_k;
 
-		Polynomial<Ring> P1;
+		Polynomial<double> P1;
 		for (iterator_j = known_points.begin(); iterator_j != known_points.end(); iterator_j++) {
-			Polynomial<Ring> temp1;
+			Polynomial<double> temp1;
 			temp1.addValue(0, 1);
 			for (iterator_k = known_points.begin(); iterator_k != known_points.end(); iterator_k++) {
 				if (iterator_j != iterator_k) {
-					Polynomial<Ring> temp2;
+					Polynomial<double> temp2;
 					temp2.addValue(0, - iterator_k->first);
 					temp2.addValue(1, 1);
 
-					temp1 = temp1 * (temp2 / (iterator_j->first - iterator_k->first));
+					temp1 = temp1 * (temp2 / ((double)iterator_j->first - (double)iterator_k->first));
 				}
 			}
-			P1 = P1 + (iterator_j->second * temp1);
+			P1 = P1 + ((double)iterator_j->second * temp1);
 		}
 
-		return P1;
+		Polynomial<Ring> ret;
+		for (int i = 0; i < P1.deg(); i++) {
+			ret.addValue(i, (Ring) P1.getValue(i));
+		}
+
+		return ret;
 	}
 
 };

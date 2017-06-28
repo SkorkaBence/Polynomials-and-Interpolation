@@ -59,7 +59,7 @@ public:
 
 	int deg() {
 		int i = vals.size() - 1;
-		while (i >= 0 && vals[i] == 0) {
+		while (i >= 0 && (int)vals[i] == 0) {
 			i--;
 		}
 		if (i < 0) {
@@ -68,14 +68,15 @@ public:
 		return i;
 	}
 
-	void echo(std::ostream& out) {
-		int d = this->deg();
+	friend std::ostream& operator << (std::ostream& out, Polynomial<Ring> p) {
+		int d = p.deg();
 		out << "Polynomial:";
 		for (int i = 0; i <= d; i++) {
-			if (this->getValue(i) != 0) {
-				out << "   " << this->getValue(i) << "x^" << i;
+			if ((int)p.getValue(i) != 0) {
+				out << "   " << p.getValue(i) << "x^" << i;
 			}
 		}
+		return out;
 	}
 };
 
